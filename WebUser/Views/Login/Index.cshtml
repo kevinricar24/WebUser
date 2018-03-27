@@ -1,0 +1,38 @@
+﻿@using WebUser.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+}
+<script src="~/Scripts/angular.js"></script>
+<script src="~/Scripts/LoginAngular.js"></script>
+<h2>Log In</h2>
+<div class="row" ng-app="myApp1">
+    <div ng-controller="myCtrl1" class="col-md-8">
+        <section id="loginForm">
+                <h4>Use una cuenta local.</h4>
+                <hr />
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" id="inputEmail" placeholder="Correo" ng-model="UserEmail">
+                        <br />
+                        <span id="emailvalidation"></span>
+                    </div>
+                </div>
+            <br />
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        <input type="password" class="form-control" id="inputPassword" placeholder="Password" ng-model="UserPassword">
+                        <br />
+                        <span id="passwordvalidation"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Log in" class="btn btn-default" ng-click="ValidateData()" />
+                    </div>
+                </div>
+        </section>
+    </div>
+</div>

@@ -1,0 +1,143 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<script src="~/Scripts/angular.js"></script>
+<script src="~/Scripts/CRUDAngular.js"></script>
+<style>
+    .btn-space {
+        margin-left: -5%;
+        background-color: limegreen;
+        font-size: large;
+        color:white;
+    }
+</style>
+<h2>Lista de Usuarios</h2>
+<div ng-app="myApp">
+    <div ng-controller="myCtrl" ng-init="GetAllData()" class="divList">
+        <table cellpadding="12" class="table table-bordered table-hover">
+            <tr>
+                <td>
+                    <b>ID</b>
+                </td>
+                <td>
+                    <b>Usuario</b>
+                </td>
+                <td>
+                    <b>Correo Electrónico</b>
+                </td>
+                <td>
+                    <b>Sexo</b>
+                </td>
+                <td>
+                    <b>Estado</b>
+                </td>
+                <td>
+                    <b>Acciones</b>
+                </td>
+            </tr>
+            <tr ng-repeat="user in users">
+                <td>
+                    {{user.Id}}
+                </td>
+                <td>
+                    {{user.Username}}
+                </td>
+                <td>
+                    {{user.Email}}
+                </td>
+                <td>
+                    {{user.Sex}}
+                </td>
+                <td>
+                    {{user.Status}}
+                </td>
+                <td>
+                    <input type="button" class="btn btn-danger" value="Eliminar" ng-click="DeleteUser(user)" />
+                    <input type="button" class="btn btn-warning" value="Editar" ng-click="UpdateUser(user)" />
+                </td>
+            </tr>
+        </table>
+        <div class="form-horizontal" role="form">
+            <div class="container">
+                <div class="row">
+                    <h2>
+                        <span id="spn">Agregar Nuevo Usuario</span>
+                    </h2>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Correo Electrónico:</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="inputEmail" placeholder="Correo" ng-model="UserEmail">
+                                <span id="emailvalidation"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Usuario:</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="inputUsername" placeholder="Usuario" ng-model="UserUsername">
+                                <span id="usernamevalidation"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Contraseña:</label>
+                            <div class="col-md-8">
+                                <input type="password" class="form-control" id="inputPassword1" placeholder="Contraseña" ng-model="UserPassword1">
+                                <span id="passwordvalidation"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Reescribir Contraseña:</label>
+                            <div class="col-md-8">
+                                <input type="password" class="form-control" id="inputPassword2" placeholder="Contraseña" ng-model="UserPassword2">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="StatusDiv" class="col-sm-6 col-lg-4">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Estado:</label>
+                            <div class="col-md-8">
+                                <select id="SelectStatus" ng-model="UserStatus">
+                                    <option value=""></option>
+                                    <option value="1">Activo</option>
+                                    <option value="0">Inactivo</option>
+                                </select>
+                                <span id="statusvalidation"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Sexo:</label>
+                            <div class="col-md-8">
+                                <select id="SelectSex" ng-model="UserSex">
+                                    <option value=""></option>
+                                    <option value="Femenino">Femenino</option>
+                                    <option value="Masculino">Masculino</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-lg-4">
+                        <input type="button" id="btnSave" class="form-control btn-space" value="Guardar" ng-click="ValidateData()" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @Html.Hidden("UserID_")
+
+</div>
